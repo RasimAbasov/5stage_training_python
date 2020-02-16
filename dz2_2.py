@@ -36,3 +36,11 @@ assert response_headers['Server'] == 'AtlassianProxy/1.15.8.1', "Не совпа
 
 #  Вопрос: откуда пришел запрос с основного сайта или по реферальной ссылке или через прокси сервер.
 #  несовсем понял, как это проверять, по заголовку "referrer": "https://yandex.ru/" ?
+
+# Check requests headers
+requests_headers = response.request.headers
+assert requests_headers['Accept-Encoding'] == 'gzip, deflate', "Не совпадает заголовок Accept-Encoding"
+assert requests_headers['Accept'] == 'application/json', "Не совпадает заголовок Accept"
+assert requests_headers['Connection'] == 'keep-alive', "Не совпадает заголовок Connection"
+print("User-Agent: ", requests_headers['User-Agent'])
+print("referrer:", requests_headers['referrer'])
